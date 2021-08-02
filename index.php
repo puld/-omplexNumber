@@ -1,14 +1,19 @@
 <?php
 
+require_once __DIR__ . "/vendor/autoload.php";
 require_once __DIR__ . '/src/ComplexNumber.php';
 require_once __DIR__ . '/src/Helper.php';
 
 
 $u = Helper::make();
 $v = Helper::make();
+$nu = Helper::negative($u);
 
 echo "u = $u\n";
 echo "v = $v\n";
+echo "-u = $nu\n";
+
+
 
 echo "\nu + v === v + u\n";
 $sum = Helper::add($u, $v);
@@ -26,3 +31,5 @@ echo "\nu * v = $mult\n";
 $div = Helper::div($u, $v);
 echo "\nu / v = $div\n";
 
+
+sleep(100000);

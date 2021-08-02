@@ -9,15 +9,14 @@ require_once __DIR__ . '/ComplexNumber.php';
  */
 class Helper
 {
-
-	static function make()
+	public static function make(bool $nil = false)
 	{
-		$a = mt_rand(10, 100) / 10;
-		$b = mt_rand(10, 100) / 10;
+		$a = $nil ? 0.0 : mt_rand(-100, 100) / 10;
+		$b = $nil ? 0.0 : mt_rand(-100, 100) / 10;
 		return new ComplexNumber($a, $b);
 	}
 
-	static function add(ComplexNumber $u, ComplexNumber $v): ComplexNumber
+	public static function add(ComplexNumber $u, ComplexNumber $v): ComplexNumber
 	{
 		list ($a, $b) = $u->extract();
 		list ($c, $d) = $v->extract();
@@ -26,7 +25,7 @@ class Helper
 		return new ComplexNumber($a + $c, $b + $d);
 	}
 
-	static function sub(ComplexNumber $u, ComplexNumber $v): ComplexNumber
+	public static function sub(ComplexNumber $u, ComplexNumber $v): ComplexNumber
 	{
 		list ($a, $b) = $u->extract();
 		list ($c, $d) = $v->extract();
@@ -35,12 +34,7 @@ class Helper
 		return new ComplexNumber($a - $c, $b - $d);
 	}
 
-	/**
-	 * @param ComplexNumber $u
-	 * @param ComplexNumber $v
-	 * @return ComplexNumber
-	 */
-	static function mult(ComplexNumber $u, ComplexNumber $v): ComplexNumber
+	public static function 	mult(ComplexNumber $u, ComplexNumber $v): ComplexNumber
 	{
 		list ($a, $b) = $u->extract();
 		list ($c, $d) = $v->extract();
@@ -49,7 +43,7 @@ class Helper
 		return new ComplexNumber($a * $c - $b * $d, $b * $c + $a * $d);
 	}
 
-	static function div(ComplexNumber $u, ComplexNumber $v): ComplexNumber
+	public static function div(ComplexNumber $u, ComplexNumber $v): ComplexNumber
 	{
 		list ($a, $b) = $u->extract();
 		list ($c, $d) = $v->extract();
@@ -59,8 +53,14 @@ class Helper
 		return new ComplexNumber(($a * $c + $b * $d) / ($c * $c + $b * $b), ($b * $c - $a * $d) / ($c * $c + $b * $b));
 	}
 
-	static function eq(ComplexNumber $u, ComplexNumber $v): bool
+	public static function eq(ComplexNumber $u, ComplexNumber $v): bool
 	{
 		return ($u->a === $v->a) && ($u->b === $v->b);
+	}
+
+	public static function negative(ComplexNumber $u) : ComplexNumber
+	{
+		list ($a, $b) = $u->extract();
+		return new ComplexNumber(-$a, -$b);
 	}
 }

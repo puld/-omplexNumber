@@ -1,0 +1,7 @@
+{
+	"name": "vendor_name/lidsteh",
+	"minimum-stability": "dev",
+	"require": {
+		"phpunit/phpunit": "*"
+	}
+}

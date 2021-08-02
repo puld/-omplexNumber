@@ -26,8 +26,9 @@ class ComplexNumber
 	public function __toString(): string
 	{
 		$aFormat = number_format($this->a, 2, '.', '');
-		$bFormat = number_format($this->b, 2, '.', '');
-		return "$aFormat + $bFormat i";
+		$bFormat = number_format(abs($this->b), 2, '.', '');
+		$op = $this->b < 0.0 ? '-' : '+';
+		return "$aFormat $op $bFormat i";
 	}
 
 	public function extract(): array
