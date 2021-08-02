@@ -17,10 +17,18 @@ class ComplexNumber
 	 */
 	public float $b;
 
-	function __construct(float $a, float $b)
+	function __construct(float $a, float $b, bool $asTrigonometricForm = false)
 	{
-		$this->a = $a;
-		$this->b = $b;
+		if ($asTrigonometricForm)
+		{
+			$this->a = $a * cos($b);
+			$this->b = $a * sin($b);
+		}
+		else
+		{
+			$this->a = $a;
+			$this->b = $b;
+		}
 	}
 
 	public function __toString(): string
